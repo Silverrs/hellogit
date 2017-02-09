@@ -1,11 +1,21 @@
-#include<iostream>
-#include<string>
-#include<vector>
-#include"Books.h"
+#include <iostream>
+#include "Books.h"
 #include "Source.cpp"
 #include <iomanip>
+#include <vector>
+#include <string>
 
 using namespace std;
+
+int linearSearch(auto data, auto key){
+	for(int i=0; i < data.size(); i++){
+		if(data[i].getName()==key){
+			return i;
+			}
+		}
+		return -1;
+	}
+
 
 int main() {
 	string amount = "";
@@ -17,6 +27,10 @@ int main() {
 	string bauthor = "";
 	vector<Books> v;
 	Books obj;
+	string searchkey="";
+	int result=0;
+
+
 
 
 
@@ -48,5 +62,16 @@ int main() {
 		cout << "Title: " << v[y].getName() << " Author: " << v[y].getAuthor()
 			<< " Cost: $" << fixed << setprecision(2)<< v[y].getNum() << "\n";
 	}
-	system("pause");
+	cout<<"Please enter the name of the book";
+	getline(cin,searchkey);
+	
+	result = linearSearch(v,searchkey);
+	
+	 if (result == -1)
+          cout<<"not found";
+        else
+          cout<<"found at index "<<result;
+          
+	
 }
+
